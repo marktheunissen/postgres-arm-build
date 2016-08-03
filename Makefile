@@ -7,7 +7,7 @@ build: ## Build a new image and tag it as the latest
 
 deb: ## Grab the deb file out the container.
 	docker create --name build-container-postgres $(IMAGE_NAME)
-	docker cp build-container-postgres:/root/deb/ ./
+	docker cp build-container-postgres:/builds/ ./
 	docker rm build-container-postgres
 
 
