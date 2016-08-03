@@ -18,6 +18,8 @@ RUN apt-get update && apt-get install -y \
 
 RUN mkdir /builds \
     && useradd compile \
+    && mkdir /home/compile \
+    && chown compile: /home/compile \
     && chown compile:compile /builds
 
 USER compile
@@ -25,10 +27,4 @@ WORKDIR /builds
 RUN apt-get source --compile postgresql-9.5
 RUN apt-get source --compile postgresql-common
 RUN apt-get source --compile postgresql-client-common
-
-USER root
-RUN mkdir /home/compile && chown compile: /home/compile
-USER compile
 RUN apt-get source --compile pgdg-keyring
-
-WORKDIR /builds
